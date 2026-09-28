@@ -123,6 +123,10 @@ h2 { margin: 0; font-family: var(--font-display); font-size: clamp(45px, 4.3vw, 
 .research-symbol { color: #c17b5e; font-family: var(--font-display); font-size: 82px; line-height: 1; }
 .research-publisher { margin: 27px 0 0; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.25); color: #d8e2db; font-size: 11px; }
 .research-publisher strong { color: var(--paper); font-weight: 600; }
+.research-link { display: inline-flex; align-self: flex-start; align-items: center; gap: 12px; margin-top: 17px; border-bottom: 1px solid rgba(247,244,237,.7); padding-bottom: 4px; color: var(--paper); font-size: 11px; font-weight: 700; transition: color .25s, border-color .25s; }
+.research-link:hover { border-color: #e9b9a5; color: #e9b9a5; }
+.research-link span { font-size: 18px; line-height: 1; transition: transform .25s; }
+.research-link:hover span { transform: translate(3px, -3px); }
 .research-ornament { position: absolute; top: -150px; right: -60px; width: 560px; height: 560px; opacity: .18; transform: rotate(-20deg); }
 .research-ornament span { position: absolute; inset: 0; border: 1px solid #c8d8ca; border-radius: 50%; }
 .research-ornament span:nth-child(2) { inset: 60px; }

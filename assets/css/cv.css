@@ -33,6 +33,8 @@ h1 em { color: var(--rust); font-weight: 500; }
 .cv-columns h3 { margin: 0 0 7px; font-size: 12px; line-height: 1.5; }
 .cv-columns p { margin: 0; color: #456056; font-size: 11px; }
 .cv-columns .cv-sub { margin-top: 8px; color: var(--rust); font-weight: 600; }
+.cv-publication-link { display: inline-block; margin-top: 8px; border-bottom: 1px solid var(--rust); color: var(--rust); font-size: 11px; font-weight: 700; }
+.cv-publication-link:hover { color: var(--ink); border-color: var(--ink); }
 .cv-wide { grid-column: 1 / -1; }
 .cv-activity-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
 .cv-footer { margin-top: 48px; border-top: 1px solid var(--ink); border-bottom: 0; padding: 12px 0 0; }
