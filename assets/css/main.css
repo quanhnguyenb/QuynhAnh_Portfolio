@@ -22,7 +22,6 @@ button { font: inherit; }
 .section-pad { padding-block: clamp(88px, 9vw, 142px); }
 .skip-link { position: absolute; z-index: 1000; top: -80px; left: 24px; padding: 12px 18px; background: var(--ink); color: white; }
 .skip-link:focus { top: 15px; }
-.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 .page-progress { position: fixed; z-index: 100; top: 0; left: 0; width: 0; height: 3px; background: var(--rust); }
 
 /* Header */
@@ -194,11 +193,11 @@ h2 { margin: 0; font-family: var(--font-display); font-size: clamp(45px, 4.3vw, 
 
 .hero-title-line { display: block; overflow: hidden; }
 .hero-title-line > * { display: inline-block; padding-block: .06em; margin-block: -.06em; }
+.hero-fallback-break { display: none; }
 .hero-focus { display: flex; align-items: center; gap: 13px; margin: 20px 0 0; font-size: 10px; font-weight: 700; letter-spacing: .17em; line-height: 1.6; }
 .focus-label { color: var(--ink-soft); }
-.focus-window { display: block; height: 1.6em; overflow: hidden; color: var(--rust); }
-.focus-track { display: block; animation: focusCycle 10s ease-in-out infinite; }
-.focus-track > span { display: block; height: 1.6em; }
+.focus-word { display: inline-block; min-width: 10ch; color: var(--rust); transition: opacity .22s ease, transform .22s ease; }
+.focus-word.is-changing { opacity: 0; transform: translateY(-6px); }
 .hero-focus + .hero-actions { margin-top: 26px; }
 .has-js .site-header { animation: headerEnter .65s ease both; }
 .has-js .hero-copy > .eyebrow { animation: heroEnter .75s .12s both; }
@@ -274,7 +273,6 @@ h2 { margin: 0; font-family: var(--font-display); font-size: clamp(45px, 4.3vw, 
 @keyframes headerEnter { from { opacity: 0; transform: translateY(-18px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes heroEnter { from { opacity: 0; transform: translateY(27px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes titleRise { from { opacity: 0; transform: translateY(110%) rotate(2deg); } to { opacity: 1; transform: translateY(0) rotate(0); } }
-@keyframes focusCycle { 0%, 20% { transform: translateY(0); } 25%, 45% { transform: translateY(-1.6em); } 50%, 70% { transform: translateY(-3.2em); } 75%, 100% { transform: translateY(-4.8em); } }
 @keyframes portraitUnveil { from { opacity: .35; clip-path: inset(0 0 100% 0); } to { opacity: 1; clip-path: inset(0); } }
 @keyframes ambientDrift { to { transform: translate(-28px, 22px) scale(1.07); } }
 @keyframes noteFloat { to { transform: translateY(-9px); } }
@@ -402,7 +400,7 @@ h2 { margin: 0; font-family: var(--font-display); font-size: clamp(45px, 4.3vw, 
   .has-js .hero-copy > *, .has-js .hero-title-line > *, .has-js .hero-photo { animation: none !important; opacity: 1 !important; transform: none !important; clip-path: none !important; }
   .has-js .about-copy .identity-list > div, .has-js .achievement-card.reveal .achievement-body h3, .has-js .achievement-card.reveal .achievement-body p, .has-js .activity-card.reveal .activity-info > div, .has-js .activity-card.reveal .activity-index { opacity: 1; transform: none; animation: none !important; }
   .has-js .achievement-card.reveal .achievement-media img, .has-js .activity-card.reveal .activity-image img { clip-path: none; animation: none !important; }
-  .word-band-track, .focus-track, .hero-glow, .hero-image-note, .note-star, .closing-star, .research-ornament, .art-ring, .closing::before, .closing::after { animation: none !important; }
+  .word-band-track, .hero-glow, .hero-image-note, .note-star, .closing-star, .research-ornament, .art-ring, .closing::before, .closing::after { animation: none !important; }
   .activity-image img { transform: none !important; }
   .has-js .achievement-card.reveal.is-visible:hover, .has-js .activity-card.reveal.is-visible:hover, .button:hover, .back-to-top:hover { transform: none; }
 }

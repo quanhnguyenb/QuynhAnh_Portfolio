@@ -4,6 +4,21 @@ const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
 const menuButton = document.querySelector('.menu-toggle');
 const navigation = document.querySelector('.primary-nav');
+const focusWord = document.querySelector('.focus-word');
+
+if (focusWord) {
+  const words = ['ECONOMICS', 'RESEARCH', 'COMMUNITY'];
+  let currentWord = 0;
+  window.setInterval(() => {
+    if (reducedMotion.matches || document.hidden) return;
+    focusWord.classList.add('is-changing');
+    window.setTimeout(() => {
+      currentWord = (currentWord + 1) % words.length;
+      focusWord.textContent = words[currentWord];
+      focusWord.classList.remove('is-changing');
+    }, 220);
+  }, 3200);
+}
 
 if (menuButton && navigation) {
   const closeMenu = () => {
@@ -212,6 +227,7 @@ if ('IntersectionObserver' in window && navigation) {
 
 reducedMotion.addEventListener?.('change', () => {
   if (!reducedMotion.matches) return;
+  focusWord?.classList.remove('is-changing');
   revealItems.forEach((item) => item.classList.add('is-visible'));
   counters.forEach(showFinalCount);
   if (aboutPhoto) aboutPhoto.style.setProperty('--parallax-y', '0px');
