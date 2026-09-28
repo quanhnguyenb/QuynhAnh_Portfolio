@@ -22,6 +22,7 @@ button { font: inherit; }
 .section-pad { padding-block: clamp(88px, 9vw, 142px); }
 .skip-link { position: absolute; z-index: 1000; top: -80px; left: 24px; padding: 12px 18px; background: var(--ink); color: white; }
 .skip-link:focus { top: 15px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 .page-progress { position: fixed; z-index: 100; top: 0; left: 0; width: 0; height: 3px; background: var(--rust); }
 
 /* Header */
@@ -191,34 +192,65 @@ h2 { margin: 0; font-family: var(--font-display); font-size: clamp(45px, 4.3vw, 
 .word-band-group span { color: var(--ink-soft); font-family: var(--font-display); font-size: 25px; font-style: italic; letter-spacing: -.02em; }
 .word-band-group i { color: var(--rust); font-size: 17px; font-style: normal; }
 
+.hero-title-line { display: block; overflow: hidden; }
+.hero-title-line > * { display: inline-block; padding-block: .06em; margin-block: -.06em; }
+.hero-focus { display: flex; align-items: center; gap: 13px; margin: 20px 0 0; font-size: 10px; font-weight: 700; letter-spacing: .17em; line-height: 1.6; }
+.focus-label { color: var(--ink-soft); }
+.focus-window { display: block; height: 1.6em; overflow: hidden; color: var(--rust); }
+.focus-track { display: block; animation: focusCycle 10s ease-in-out infinite; }
+.focus-track > span { display: block; height: 1.6em; }
+.hero-focus + .hero-actions { margin-top: 26px; }
 .has-js .site-header { animation: headerEnter .65s ease both; }
 .has-js .hero-copy > .eyebrow { animation: heroEnter .75s .12s both; }
-.has-js .hero-copy > h1 { animation: heroEnter .85s .23s both; }
+.has-js .hero-title-line > * { animation: titleRise .95s cubic-bezier(.18,.8,.2,1) .2s both; }
+.has-js .hero-title-line:nth-child(2) > * { animation-delay: .34s; }
 .has-js .hero-copy > .hero-role { animation: heroEnter .8s .38s both; }
 .has-js .hero-copy > .hero-intro { animation: heroEnter .8s .5s both; }
-.has-js .hero-copy > .hero-actions { animation: heroEnter .8s .62s both; }
+.has-js .hero-copy > .hero-focus { animation: heroEnter .8s .6s both; }
+.has-js .hero-copy > .hero-actions { animation: heroEnter .8s .7s both; }
 .has-js .hero-photo { animation: portraitUnveil 1.2s .22s both; }
 .hero-glow { animation: ambientDrift 11s ease-in-out infinite alternate; }
 .hero-photo-wrap { transform: perspective(1000px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)); transition: transform .38s ease; transform-style: preserve-3d; }
 .hero-photo-wrap::before { position: absolute; z-index: 1; inset: 0; background: radial-gradient(circle at var(--glow-x, 50%) var(--glow-y, 50%), rgba(255,255,255,.2), transparent 48%); content: ""; opacity: 0; pointer-events: none; transition: opacity .3s; }
 .hero-visual:hover .hero-photo-wrap::before { opacity: 1; }
+.hero-image-note { animation: noteFloat 5.5s ease-in-out infinite alternate; }
 .note-star, .closing-star { display: inline-block; animation: starTurn 16s linear infinite; }
 .research-ornament { animation: ornamentFloat 9s ease-in-out infinite alternate; }
 .art-ring { animation: ringBreathe 7s ease-in-out infinite alternate; }
 .art-ring-two { animation-delay: -3s; }
 
+.fact.reveal:nth-child(2) { transition-delay: .12s; }
+.fact.reveal:nth-child(3) { transition-delay: .24s; }
 .achievement-grid .reveal:nth-child(2), .activities-grid .reveal:nth-child(2) { transition-delay: .13s; }
 .section-head h2 em, .about-copy h2 em, .closing h2 em { background-image: linear-gradient(rgba(182,97,69,.23), rgba(182,97,69,.23)); background-position: 0 91%; background-repeat: no-repeat; background-size: 0 8px; transition: background-size 1s cubic-bezier(.2,.7,.2,1) .2s; }
 .section-head.is-visible h2 em, .about-copy.is-visible h2 em, .closing-inner.is-visible h2 em { background-size: 100% 8px; }
 .closing h2 em { background-image: linear-gradient(rgba(220,163,132,.34), rgba(220,163,132,.34)); }
+.has-js .about-copy .identity-list > div { opacity: 0; transform: translateX(-16px); }
+.has-js .about-copy.is-visible .identity-list > div { animation: detailEnter .65s ease both; }
+.has-js .about-copy.is-visible .identity-list > div:nth-child(1) { animation-delay: .2s; }
+.has-js .about-copy.is-visible .identity-list > div:nth-child(2) { animation-delay: .28s; }
+.has-js .about-copy.is-visible .identity-list > div:nth-child(3) { animation-delay: .36s; }
+.has-js .about-copy.is-visible .identity-list > div:nth-child(4) { animation-delay: .44s; }
 .about-photo-frame img { transform: scale(1.06) translateY(var(--parallax-y, 0px)); }
 .about-photo-frame:hover img { transform: scale(1.1) translateY(var(--parallax-y, 0px)); }
+.research-card::before { position: absolute; z-index: 1; inset: 0; background: radial-gradient(circle 240px at var(--spot-x, 60%) var(--spot-y, 50%), rgba(232,189,153,.24), transparent 75%); content: ""; opacity: 0; pointer-events: none; transition: opacity .4s; }
+.research-card:hover::before { opacity: 1; }
+.has-js .achievement-card.reveal .achievement-media img, .has-js .activity-card.reveal .activity-image img { clip-path: inset(0 0 100% 0); }
+.has-js .achievement-card.reveal.is-visible .achievement-media img, .has-js .activity-card.reveal.is-visible .activity-image img { animation: imageUnmask .95s cubic-bezier(.25,.75,.25,1) .13s both; }
+.has-js .achievement-card.reveal .achievement-body h3, .has-js .achievement-card.reveal .achievement-body p, .has-js .activity-card.reveal .activity-info > div, .has-js .activity-card.reveal .activity-index { opacity: 0; transform: translateY(16px); }
+.has-js .achievement-card.reveal.is-visible .achievement-body h3, .has-js .achievement-card.reveal.is-visible .achievement-body p, .has-js .activity-card.reveal.is-visible .activity-info > div, .has-js .activity-card.reveal.is-visible .activity-index { animation: detailEnter .65s ease .26s both; }
+.has-js .achievement-card.reveal.is-visible .achievement-body p, .has-js .activity-card.reveal.is-visible .activity-index { animation-delay: .38s; }
+.activity-image img { transform: scale(1.08) translateY(var(--activity-y, 0px)); }
+.activity-card:hover .activity-image img { transform: scale(1.12) translateY(var(--activity-y, 0px)); }
+.closing::before { animation: closingOrbit 18s ease-in-out infinite alternate; }
+.closing::after { animation: closingOrbit 20s ease-in-out -8s infinite alternate-reverse; }
 .has-js .achievement-card.reveal.is-visible, .has-js .activity-card.reveal.is-visible { transition: opacity .7s ease, transform .55s ease, box-shadow .4s ease; }
 .has-js .achievement-card.reveal.is-visible:hover, .has-js .activity-card.reveal.is-visible:hover { transform: translateY(-8px); box-shadow: 0 24px 42px rgba(25,54,47,.13); }
 .activity-card:hover .activity-info { border-color: var(--rust); }
 .achievement-card:hover .media-open { transform: translate(3px, -3px); }
 .media-open { transition: transform .25s; }
-.button { position: relative; overflow: hidden; }
+.button { position: relative; overflow: hidden; transform: translate3d(var(--magnet-x, 0px), var(--magnet-y, 0px), 0); }
+.button:hover { transform: translate3d(var(--magnet-x, 0px), calc(var(--magnet-y, 0px) - 3px), 0); }
 .button::before { position: absolute; top: 0; bottom: 0; left: -70%; width: 42%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.2), transparent); content: ""; transform: skewX(-20deg); transition: left .7s ease; pointer-events: none; }
 .button:hover::before { left: 130%; }
 .button span, .inline-arrow span, .text-link span { transition: transform .25s ease; }
@@ -241,11 +273,17 @@ h2 { margin: 0; font-family: var(--font-display); font-size: clamp(45px, 4.3vw, 
 @keyframes wordBandScroll { to { transform: translateX(-50%); } }
 @keyframes headerEnter { from { opacity: 0; transform: translateY(-18px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes heroEnter { from { opacity: 0; transform: translateY(27px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes titleRise { from { opacity: 0; transform: translateY(110%) rotate(2deg); } to { opacity: 1; transform: translateY(0) rotate(0); } }
+@keyframes focusCycle { 0%, 20% { transform: translateY(0); } 25%, 45% { transform: translateY(-1.6em); } 50%, 70% { transform: translateY(-3.2em); } 75%, 100% { transform: translateY(-4.8em); } }
 @keyframes portraitUnveil { from { opacity: .35; clip-path: inset(0 0 100% 0); } to { opacity: 1; clip-path: inset(0); } }
 @keyframes ambientDrift { to { transform: translate(-28px, 22px) scale(1.07); } }
+@keyframes noteFloat { to { transform: translateY(-9px); } }
 @keyframes starTurn { to { transform: rotate(360deg); } }
 @keyframes ornamentFloat { to { transform: translate(20px, 24px) rotate(-14deg); } }
 @keyframes ringBreathe { to { transform: scale(1.12); } }
+@keyframes imageUnmask { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0); } }
+@keyframes detailEnter { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes closingOrbit { to { transform: translate(35px, -18px) scale(1.13); } }
 @keyframes menuEnter { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes lightboxEnter { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
@@ -361,7 +399,10 @@ h2 { margin: 0; font-family: var(--font-display); font-size: clamp(45px, 4.3vw, 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
   .reveal { opacity: 1; transform: none; }
-  .has-js .hero-copy > *, .has-js .hero-photo { animation: none !important; opacity: 1 !important; transform: none !important; clip-path: none !important; }
-  .word-band-track, .hero-glow, .note-star, .closing-star, .research-ornament, .art-ring { animation: none !important; }
+  .has-js .hero-copy > *, .has-js .hero-title-line > *, .has-js .hero-photo { animation: none !important; opacity: 1 !important; transform: none !important; clip-path: none !important; }
+  .has-js .about-copy .identity-list > div, .has-js .achievement-card.reveal .achievement-body h3, .has-js .achievement-card.reveal .achievement-body p, .has-js .activity-card.reveal .activity-info > div, .has-js .activity-card.reveal .activity-index { opacity: 1; transform: none; animation: none !important; }
+  .has-js .achievement-card.reveal .achievement-media img, .has-js .activity-card.reveal .activity-image img { clip-path: none; animation: none !important; }
+  .word-band-track, .focus-track, .hero-glow, .hero-image-note, .note-star, .closing-star, .research-ornament, .art-ring, .closing::before, .closing::after { animation: none !important; }
+  .activity-image img { transform: none !important; }
   .has-js .achievement-card.reveal.is-visible:hover, .has-js .activity-card.reveal.is-visible:hover, .button:hover, .back-to-top:hover { transform: none; }
 }

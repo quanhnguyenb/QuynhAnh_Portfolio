@@ -88,6 +88,7 @@ if ('IntersectionObserver' in window && !reducedMotion.matches) {
 const progressBar = document.querySelector('.page-progress');
 const backToTop = document.querySelector('.back-to-top');
 const aboutPhoto = document.querySelector('.about-photo-frame img');
+const activityImages = document.querySelectorAll('.activity-image img');
 let scrollTicking = false;
 
 function updateScrollEffects() {
@@ -105,6 +106,18 @@ function updateScrollEffects() {
   } else if (aboutPhoto) {
     aboutPhoto.style.setProperty('--parallax-y', '0px');
   }
+
+  activityImages.forEach((image) => {
+    if (reducedMotion.matches || window.innerWidth <= 760) {
+      image.style.setProperty('--activity-y', '0px');
+      return;
+    }
+    const bounds = image.parentElement.getBoundingClientRect();
+    if (bounds.bottom < 0 || bounds.top > window.innerHeight) return;
+    const distance = (bounds.top + bounds.height / 2 - window.innerHeight / 2) / window.innerHeight;
+    const offset = Math.max(-12, Math.min(12, distance * -22));
+    image.style.setProperty('--activity-y', `${offset.toFixed(1)}px`);
+  });
   scrollTicking = false;
 }
 function requestScrollUpdate() {
@@ -140,6 +153,31 @@ if (heroVisual && heroPhoto) {
     heroPhoto.style.setProperty('--tilt-y', '0deg');
   });
 }
+
+const researchCard = document.querySelector('.research-card');
+if (researchCard) {
+  researchCard.addEventListener('pointermove', (event) => {
+    if (!finePointer.matches || reducedMotion.matches || event.pointerType === 'touch') return;
+    const bounds = researchCard.getBoundingClientRect();
+    researchCard.style.setProperty('--spot-x', `${((event.clientX - bounds.left) / bounds.width * 100).toFixed(1)}%`);
+    researchCard.style.setProperty('--spot-y', `${((event.clientY - bounds.top) / bounds.height * 100).toFixed(1)}%`);
+  });
+}
+
+document.querySelectorAll('.button').forEach((button) => {
+  button.addEventListener('pointermove', (event) => {
+    if (!finePointer.matches || reducedMotion.matches || event.pointerType === 'touch') return;
+    const bounds = button.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) / bounds.width - .5;
+    const y = (event.clientY - bounds.top) / bounds.height - .5;
+    button.style.setProperty('--magnet-x', `${(x * 10).toFixed(1)}px`);
+    button.style.setProperty('--magnet-y', `${(y * 8).toFixed(1)}px`);
+  });
+  button.addEventListener('pointerleave', () => {
+    button.style.setProperty('--magnet-x', '0px');
+    button.style.setProperty('--magnet-y', '0px');
+  });
+});
 
 const certificateLink = document.querySelector('.achievement-media');
 const lightbox = document.querySelector('#certificate-lightbox');
@@ -177,6 +215,11 @@ reducedMotion.addEventListener?.('change', () => {
   revealItems.forEach((item) => item.classList.add('is-visible'));
   counters.forEach(showFinalCount);
   if (aboutPhoto) aboutPhoto.style.setProperty('--parallax-y', '0px');
+  activityImages.forEach((image) => image.style.setProperty('--activity-y', '0px'));
+  document.querySelectorAll('.button').forEach((button) => {
+    button.style.setProperty('--magnet-x', '0px');
+    button.style.setProperty('--magnet-y', '0px');
+  });
   if (heroPhoto) {
     heroPhoto.style.setProperty('--tilt-x', '0deg');
     heroPhoto.style.setProperty('--tilt-y', '0deg');

@@ -34,7 +34,7 @@ Sau đó truy cập `http://localhost:8000/`. Từ portfolio, chọn **My Profil
 
 ## Hiệu ứng và tương tác
 
-Trang có chuyển động khi mở và cuộn, dải chữ chạy, số liệu tăng dần, ảnh chân dung phản hồi theo con trỏ, thẻ có hiệu ứng khi rê chuột, hộp xem lớn chứng nhận và nút trở về đầu trang. Các tương tác được viết bằng JavaScript thuần; trang vẫn hiển thị nội dung khi tắt JavaScript. Hiệu ứng tự giảm theo thiết lập **Reduce motion** của hệ điều hành.
+Trang có phần tên mở theo từng dòng, từ khóa luân phiên ở đầu trang, dải chữ chạy, số liệu tăng dần, ảnh và thông tin mở dần khi cuộn, hiệu ứng thị sai nhẹ ở ảnh hoạt động, ánh sáng theo con trỏ trên thẻ nghiên cứu, nút phản hồi theo con trỏ, hộp xem lớn chứng nhận và nút trở về đầu trang. Các tương tác được viết bằng JavaScript thuần; trang vẫn hiển thị nội dung khi tắt JavaScript. Hiệu ứng tự giảm theo thiết lập **Reduce motion** của hệ điều hành.
 
 ## Chỉnh sửa
 
