@@ -188,7 +188,7 @@ h2 { margin: 0; font-family: var(--font-display); font-size: clamp(45px, 4.3vw, 
 .word-band { overflow: hidden; border-bottom: 1px solid var(--line); background: var(--paper); }
 .word-band-track { display: flex; width: max-content; animation: wordBandScroll 27s linear infinite; }
 .word-band:hover .word-band-track { animation-play-state: paused; }
-.word-band-group { display: flex; flex: 0 0 auto; align-items: center; gap: 30px; min-height: 84px; padding-right: 30px; white-space: nowrap; }
+.word-band-group { display: flex; flex: 0 0 auto; align-items: center; justify-content: space-around; gap: 30px; min-width: 100vw; min-height: 84px; padding-inline: 15px; white-space: nowrap; }
 .word-band-group span { color: var(--ink-soft); font-family: var(--font-display); font-size: 25px; font-style: italic; letter-spacing: -.02em; }
 .word-band-group i { color: var(--rust); font-size: 17px; font-style: normal; }
 
@@ -332,7 +332,7 @@ h2 { margin: 0; font-family: var(--font-display); font-size: clamp(45px, 4.3vw, 
   .fact:first-child { padding-left: 0; }
   .fact strong { font-size: 30px; }
   .fact span { font-size: 9px; }
-  .word-band-group { min-height: 68px; gap: 22px; padding-right: 22px; }
+  .word-band-group { min-height: 68px; gap: 22px; padding-inline: 11px; }
   .word-band-group span { font-size: 21px; }
   .about-grid { grid-template-columns: 1fr; gap: 70px; }
   .about-visual { max-width: 530px; margin-inline: auto; }
@@ -367,7 +367,7 @@ h2 { margin: 0; font-family: var(--font-display); font-size: clamp(45px, 4.3vw, 
   .fact + .fact { border-top: 1px solid rgba(255,255,255,.2); border-left: 0; }
   .fact strong { width: 80px; flex: 0 0 80px; }
   .fact span { max-width: none; font-size: 11px; }
-  .word-band-group { min-height: 58px; gap: 18px; padding-right: 18px; }
+  .word-band-group { min-height: 58px; gap: 18px; padding-inline: 9px; }
   .word-band-group span { font-size: 18px; }
   h2 { font-size: clamp(39px, 10vw, 54px); }
   .about-grid { gap: 60px; }
