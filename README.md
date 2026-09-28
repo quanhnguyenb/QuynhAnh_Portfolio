@@ -47,6 +47,8 @@ Trang có phần tên mở theo từng dòng, từ khóa luân phiên ở đầu
 | Menu và hiệu ứng | `assets/js/main.js` |
 | Ảnh | `assets/images/` |
 
+Khi cập nhật CSS hoặc JavaScript trên GitHub Pages, đổi giá trị `?v=` trong các đường dẫn ở `index.html` để trình duyệt tải phiên bản mới thay vì dùng bản lưu trong cache.
+
 ## Xuất bản bằng GitHub Pages
 
 Repository dùng nhánh `main` với một commit khởi đầu mới, độc lập với lịch sử của repository cũ. Tạo một repository trống tên `QuynhAnh_Portfolio` trên tài khoản GitHub muốn sử dụng; không chọn tạo sẵn README, `.gitignore` hoặc license. Kiểm tra URL của `origin` trước khi đẩy:

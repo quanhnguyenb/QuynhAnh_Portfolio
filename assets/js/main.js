@@ -10,7 +10,7 @@ if (focusWord) {
   const words = ['ECONOMICS', 'RESEARCH', 'COMMUNITY'];
   let currentWord = 0;
   window.setInterval(() => {
-    if (reducedMotion.matches || document.hidden) return;
+    if (reducedMotion.matches) return;
     focusWord.classList.add('is-changing');
     window.setTimeout(() => {
       currentWord = (currentWord + 1) % words.length;
